@@ -2,32 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Smart Savings Hub - Save on Retail & Travel</title>
+  <title>Smart Savings Hub - Retail & Travel Savings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font Awesome for icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <!-- Font & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-soft: #e5efff;
-      --bg: #ffffff;
-      --text-main: #111827;
+      --bg: #f5f7fb;
+      --text: #111827;
       --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-soft: rgba(37,99,235,0.09);
       --border: #e5e7eb;
-      --radius-lg: 32px;
-      --radius-md: 14px;
-      --shadow-soft: 0 18px 55px rgba(15, 23, 42, 0.16);
-      --transition-fast: 0.22s ease;
-      --iphone-width: 320px;
-      --iphone-height: 650px;
+      --card: #ffffff;
+      --accent: #111827;
+      --radius-xl: 32px;
+      --radius-md: 16px;
+      --transition-fast: 0.25s ease;
+      --shadow-soft: 0 14px 40px rgba(15,23,42,0.14);
+      --shadow-subtle: 0 4px 16px rgba(15,23,42,0.08);
+      --phone-width: 320px;
+      --phone-height: 640px;
     }
 
     * {
@@ -37,51 +34,55 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        -apple-system, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, sans-serif;
       background: var(--bg);
-      color: var(--text-main);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     /* HEADER */
-
     header {
       width: 100%;
-      padding: 20px 6vw 10px;
+      padding: 24px 5vw 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(245,247,251,0.97), rgba(245,247,251,0.9));
     }
 
-    .logo {
+    .brand {
       font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
     }
 
-    .nav-links a {
-      margin-left: 24px;
-      font-size: 0.98rem;
+    nav a {
+      font-size: 0.95rem;
       color: var(--muted);
+      margin-left: 24px;
       position: relative;
       padding-bottom: 4px;
       cursor: pointer;
     }
 
-    .nav-links a:hover {
-      color: var(--text-main);
+    nav a:hover,
+    nav a:focus {
+      color: var(--primary);
     }
 
-    .nav-links a.active::after,
-    .nav-links a:hover::after {
+    nav a.active::after,
+    nav a:hover::after {
       content: "";
       position: absolute;
       left: 0;
@@ -92,136 +93,130 @@
       border-radius: 999px;
     }
 
-    /* HERO LAYOUT */
-
+    /* MAIN LAYOUT */
     main {
       flex: 1;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 5vw 40px;
     }
 
-    .hero {
-      padding: 20px 6vw 40px;
+    .flex-layout {
       display: flex;
+      gap: 56px;
+      width: 100%;
+      max-width: 1200px;
       align-items: center;
       justify-content: space-between;
-      gap: 40px;
-      flex-wrap: wrap;
     }
 
-    .hero-text {
-      flex: 1 1 320px;
+    .hero-copy {
+      flex: 1;
       max-width: 520px;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw + 1rem, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-highlight span {
+      padding: 5px 10px;
       border-radius: 999px;
       background: var(--primary-soft);
       color: var(--primary);
-      font-size: 0.75rem;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .hero-text h1 {
-      font-size: clamp(2.1rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1.16;
-      margin-bottom: 13px;
-    }
-
-    .hero-text p {
-      font-size: 0.98rem;
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .hero-actions {
+    .cta-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      margin-bottom: 10px;
     }
 
     .btn-primary {
-      padding: 11px 24px;
-      border-radius: 999px;
       background: var(--primary);
-      color: #ffffff;
-      font-weight: 600;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 999px;
       border: none;
       cursor: pointer;
-      font-size: 0.98rem;
+      font-size: 0.95rem;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        background var(--transition-fast);
+      transition: var(--transition-fast);
+      box-shadow: var(--shadow-subtle);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 40px rgba(37, 99, 235, 0.45);
-      background: #1d4ed8;
+      box-shadow: var(--shadow-soft);
     }
 
     .btn-ghost {
-      padding: 11px 18px;
+      background: transparent;
+      color: var(--primary);
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #ffffff;
-      color: var(--text-main);
+      padding: 10px 16px;
+      border: 1px solid rgba(37,99,235,0.18);
+      cursor: pointer;
       font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast),
-        border-color var(--transition-fast), transform var(--transition-fast);
+      transition: var(--transition-fast);
     }
 
     .btn-ghost:hover {
-      background: #f9fafb;
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-1px);
+      background: var(--primary-soft);
     }
 
-    .hero-metrics {
-      display: flex;
-      gap: 18px;
+    .hero-note {
       font-size: 0.8rem;
       color: var(--muted);
     }
 
-    .hero-metrics span strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--text-main);
-    }
-
-    /* IPHONE MOCKUP */
-
-    .hero-phone-wrap {
-      flex: 0 0 auto;
-      display: flex;
-      justify-content: center;
-      width: min(100%, 360px);
-    }
-
-    .iphone-x {
-      width: var(--iphone-width);
-      height: var(--iphone-height);
-      border-radius: var(--radius-lg);
-      padding: 14px 10px 10px;
-      background: #000;
+    /* IPHONE X MOCKUP */
+    .phone-wrapper {
+      flex-shrink: 0;
+      width: var(--phone-width);
+      height: var(--phone-height);
+      border-radius: var(--radius-xl);
+      padding: 10px;
+      background: linear-gradient(145deg, #111827, #111827);
       box-shadow: var(--shadow-soft);
       position: relative;
       display: flex;
@@ -229,659 +224,1019 @@
       justify-content: center;
     }
 
-    /* Side buttons */
-    .iphone-x::before,
-    .iphone-x::after {
-      content: "";
-      position: absolute;
-      width: 4px;
-      background: #000;
-      border-radius: 999px;
-    }
-
-    .iphone-x::before {
-      left: -4px;
-      top: 70px;
-      height: 60px;
-    }
-
-    .iphone-x::after {
-      right: -4px;
-      top: 120px;
-      height: 40px;
-    }
-
-    .notch {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 110px;
-      height: 18px;
-      background: #000;
-      border-bottom-left-radius: 14px;
-      border-bottom-right-radius: 14px;
-      z-index: 5;
-    }
-
-    .phone-screen {
+    .phone-inner {
       width: 100%;
       height: 100%;
+      background: #ffffff;
       border-radius: 26px;
-      background: #f9fafb;
+      position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
+    /* Notch */
+    .notch {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 42%;
+      height: 18px;
+      background: #000;
+      border-radius: 0 0 14px 14px;
+      z-index: 5;
+    }
+
+    /* Status bar */
     .status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 10px 4px;
-      font-size: 0.55rem;
+      padding: 8px 14px 4px;
+      font-size: 0.6rem;
       color: #6b7280;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
-    .status-bar .right i {
-      margin-left: 4px;
-      font-size: 0.55rem;
-    }
-
-    .app-header {
-      padding: 4px 12px 4px;
+    .status-right {
       display: flex;
-      flex-direction: column;
       gap: 6px;
+      align-items: center;
+    }
+
+    /* App header */
+    .app-header {
+      padding: 4px 14px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .app-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #111827;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
-    .search-bar {
-      background: #eef2ff;
+    .app-badge {
+      font-size: 0.58rem;
+      padding: 3px 6px;
       border-radius: 999px;
-      padding: 5px 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .app-header i {
+      font-size: 0.7rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    /* Search */
+    .search-wrap {
+      padding: 0 14px 6px;
+    }
+
+    .search-box {
+      width: 100%;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      padding: 0 10px;
+      font-size: 0.7rem;
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.65rem;
-      color: #9ca3af;
+      color: var(--muted);
+      background: #f9fafb;
     }
 
-    .tabs-top {
-      display: flex;
-      padding: 6px 12px 2px;
-      gap: 10px;
-      font-size: 0.7rem;
-    }
-
-    .tabs-top button {
-      flex: 1;
-      padding: 5px 0;
-      border-radius: 999px;
+    .search-box input {
       border: none;
-      background: transparent;
-      color: #6b7280;
+      outline: none;
+      width: 100%;
       font-size: 0.7rem;
+      background: transparent;
+      color: var(--text);
+    }
+
+    /* Category Tabs */
+    .tabs {
+      display: flex;
+      padding: 4px 14px 6px;
+      gap: 6px;
+      font-size: 0.68rem;
+    }
+
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 5px 4px;
+      border-radius: 999px;
+      border: 1px solid transparent;
       cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast);
+      transition: var(--transition-fast);
+      color: var(--muted);
+      background: transparent;
+      font-weight: 500;
     }
 
-    .tabs-top button.active {
-      background: #2563eb;
-      color: #ffffff;
-      font-weight: 600;
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
     }
 
+    /* Deals list area */
     .content-scroll {
       flex: 1;
-      padding: 6px 10px 0;
       overflow-y: auto;
+      padding: 4px 10px 4px;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      font-size: 0.65rem;
+      background: #f9fafb;
     }
 
     .section-label {
-      font-weight: 600;
-      font-size: 0.65rem;
-      color: #4b5563;
-      margin: 4px 2px 2px;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 3px 4px 2px;
+      letter-spacing: 0.12em;
     }
 
     .deal-card {
-      border-radius: 10px;
+      background: var(--card);
+      border-radius: 12px;
       padding: 7px 8px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items: flex-start;
+      gap: 7px;
+      box-shadow: var(--shadow-subtle);
+      position: relative;
       cursor: pointer;
-      color: #ffffff;
-      font-size: 0.63rem;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        opacity var(--transition-fast);
-    }
-
-    .deal-card .brand {
-      font-weight: 700;
-      font-size: 0.7rem;
-      margin-bottom: 2px;
-    }
-
-    .deal-card .desc {
-      opacity: 0.9;
-    }
-
-    .deal-card .cta {
-      font-weight: 600;
-      font-size: 0.6rem;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.22);
+      transition: var(--transition-fast);
+      border: 1px solid transparent;
     }
 
     .deal-card:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.22);
-      opacity: 0.98;
+      box-shadow: var(--shadow-soft);
+      border-color: var(--primary-soft);
     }
 
-    .deal-retail-1 { background: linear-gradient(90deg, #ef4444, #f97316); }
-    .deal-retail-2 { background: linear-gradient(90deg, #6366f1, #a855f7); }
-    .deal-retail-3 { background: linear-gradient(90deg, #0ea5e9, #22c55e); }
-    .deal-betting  { background: linear-gradient(90deg, #111827, #2563eb); }
+    .deal-logo {
+      width: 20px;
+      height: 20px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
 
-    .travel-row {
+    .deal-main {
+      flex: 1;
+    }
+
+    .deal-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .deal-sub {
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .deal-tags {
       display: flex;
       gap: 4px;
-      margin-top: 2px;
+      flex-wrap: wrap;
     }
 
-    .travel-card {
-      flex: 1;
-      padding: 6px 6px;
-      border-radius: 9px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      cursor: pointer;
-      transition: box-shadow var(--transition-fast), transform var(--transition-fast),
-        border-color var(--transition-fast);
+    .deal-tags span {
+      font-size: 0.52rem;
+      padding: 2px 5px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .deal-cta {
       font-size: 0.6rem;
-      color: #111827;
-    }
-
-    .travel-card span:first-child {
+      color: var(--primary);
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
 
-    .travel-card:hover {
-      box-shadow: 0 3px 9px rgba(15, 23, 42, 0.16);
-      transform: translateY(-1px);
-      border-color: #2563eb;
+    .badge-pct {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      font-size: 0.5rem;
+      padding: 2px 5px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 600;
     }
 
     /* Divider above bottom nav */
-    .bottom-divider {
-      margin-top: 4px;
-      border-top: 1px solid #e5e7eb;
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #e5e7eb;
+      flex-shrink: 0;
     }
 
+    /* Bottom Nav */
     .bottom-nav {
+      height: 40px;
       display: flex;
-      justify-content: space-around;
       align-items: center;
-      padding: 4px 0 3px;
-      font-size: 0.55rem;
+      justify-content: space-around;
       background: #ffffff;
+      flex-shrink: 0;
     }
 
-    .bottom-nav button {
-      flex: 1;
-      border: none;
-      background: transparent;
+    .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      font-size: 0.5rem;
+      color: var(--muted);
       gap: 1px;
-      color: #9ca3af;
       cursor: pointer;
-      padding: 3px 0;
-      transition: color var(--transition-fast);
+      transition: var(--transition-fast);
     }
 
-    .bottom-nav button i {
-      font-size: 0.75rem;
+    .nav-item i {
+      font-size: 0.78rem;
     }
 
-    .bottom-nav button.active {
-      color: #2563eb;
+    .nav-item.active {
+      color: var(--primary);
+    }
+
+    .home-indicator {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      border-radius: 999px;
+      background: #111827;
+      opacity: 0.14;
+    }
+
+    /* Modal for "View Details" */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.35);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 380px;
+      background: #ffffff;
+      border-radius: 18px 18px 0 0;
+      padding: 14px 16px 16px;
+      box-shadow: 0 -10px 30px rgba(15,23,42,0.18);
+      font-size: 0.78rem;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
       font-weight: 600;
     }
 
-    /* HOW IT WORKS SECTION */
+    .modal-close {
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
+    .modal-body {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      padding: 7px 10px;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-soft);
+    }
+
+    .btn-fill {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    .btn-fill:hover {
+      transform: translateY(-1px);
+    }
+
+    /* How it works section (anchor target) */
     #how-it-works {
-      padding: 10px 6vw 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      border-top: 1px solid #f3f4f6;
+      margin-top: 32px;
+      padding: 18px 18px 10px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: var(--shadow-subtle);
+      border: 1px solid rgba(148,163,253,0.12);
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
     #how-it-works h2 {
-      grid-column: 1 / -1;
-      font-size: 1.4rem;
-      margin-bottom: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: var(--accent);
     }
 
-    .step-card {
-      padding: 14px 14px 12px;
-      border-radius: 18px;
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.86rem;
+    #how-it-works ol {
+      margin-left: 16px;
+      display: grid;
+      gap: 3px;
     }
 
-    .step-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      color: var(--primary);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-
-    .step-card strong {
-      font-size: 0.92rem;
-    }
-
-    /* FOOTER */
-
+    /* FOOTER (WordPress-style) */
     footer {
-      padding: 14px 6vw 18px;
-      border-top: 1px solid #e5e7eb;
+      width: 100%;
+      padding: 12px 5vw 18px;
       font-size: 0.78rem;
       color: #6b7280;
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 6px;
+      border-top: 1px solid #e5e7eb;
+      background: #ffffff;
     }
 
     footer i {
-      font-size: 0.78rem;
+      font-size: 0.9rem;
     }
 
-    footer span strong {
-      font-weight: 600;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 768px) {
-      .hero {
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        padding-top: 8px;
+      }
+      .flex-layout {
         flex-direction: column;
         align-items: flex-start;
       }
-
-      .hero-phone-wrap {
-        align-self: center;
+      .phone-wrapper {
+        margin: 14px auto 0;
       }
-
       header {
-        padding-bottom: 0;
+        position: static;
+        padding-bottom: 4px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="logo">Smart Savings Hub</div>
-    <nav class="nav-links">
-      <a href="#how-it-works" id="how-it-works-link">How it works</a>
-    </nav>
-  </header>
 
-  <!-- HERO -->
-  <main>
-    <section class="hero">
-      <!-- Left: Text -->
-      <div class="hero-text">
-        <div class="eyebrow">
-          <i class="fa-solid fa-tag"></i>
-          Retail & Travel Savings
-        </div>
-        <h1>Save on your favorite brands & travel in one smart hub.</h1>
-        <p>
-          Discover real-time discounts, coupon codes, hotel & flight deals, and
-          exclusive partner offers. One account, one app, smarter savings.
-        </p>
+<header>
+  <div class="brand">Smart Savings Hub</div>
+  <nav>
+    <a href="#how-it-works" id="howItWorksLink">How it works</a>
+  </nav>
+</header>
 
-        <div class="hero-actions">
-          <button class="btn-primary" id="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Download App Prototype
-          </button>
-          <button class="btn-ghost" id="try-mockup-btn">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            Try Interactive Mockup
-          </button>
-        </div>
+<main>
+  <section class="flex-layout">
+    <!-- LEFT: TEXT / CTA -->
+    <div class="hero-copy">
+      <div class="eyebrow">Unified Retail & Travel Savings</div>
+      <h1 class="hero-title">Save more on brands, flights & stays in one smart hub.</h1>
+      <p class="hero-subtitle">
+        Discover real-time coupons, hotel & flight deals, exclusive promos, and personalized offers
+        from your favorite brands—without hunting across ten different apps.
+      </p>
 
-        <div class="hero-metrics">
-          <span>
-            <strong>15K+</strong>
-            Users simulated in testing
-          </span>
-          <span>
-            <strong>28%</strong>
-            Average savings per trip
-          </span>
-          <span>
-            <strong>120+</strong>
-            Partner brands & OTAs
-          </span>
-        </div>
+      <div class="hero-highlight">
+        <span><i class="fa-solid fa-tag"></i> Auto-applied coupons</span>
+        <span><i class="fa-solid fa-plane-departure"></i> Live travel discounts</span>
+        <span><i class="fa-solid fa-gift"></i> Cashback & rewards wallet</span>
+        <span><i class="fa-solid fa-wand-magic-sparkles"></i> AI-picked best deals</span>
       </div>
 
-      <!-- Right: iPhone X Mockup -->
-      <div class="hero-phone-wrap">
-        <div class="iphone-x">
-          <div class="notch"></div>
+      <div class="cta-row">
+        <button class="btn-primary" id="ctaGetStarted">
+          <i class="fa-solid fa-download"></i>
+          Get the prototype
+        </button>
+        <button class="btn-ghost" id="ctaSimulate">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          Demo in phone
+        </button>
+      </div>
+      <p class="hero-note">
+        Click any card, tab, or icon in the mockup → explore the interactive Smart Savings Hub demo.
+      </p>
 
-          <div class="phone-screen">
-            <div class="status-bar">
-              <div class="left">9:41</div>
-              <div class="right">
-                <i class="fa-solid fa-signal"></i>
-                <i class="fa-solid fa-wifi"></i>
-                <i class="fa-solid fa-battery-full"></i>
-              </div>
-            </div>
+      <!-- HOW IT WORKS BLOCK -->
+      <div id="how-it-works">
+        <h2>How it works</h2>
+        <ol>
+          <li>Pick your favorite categories: retail, travel, entertainment.</li>
+          <li>We aggregate live deals via trusted affiliate & travel APIs.</li>
+          <li>AI ranks offers by relevancy, savings, and reliability.</li>
+          <li>You activate a deal or booking and earn cashback or rewards.</li>
+          <li>Track your lifetime savings directly inside Smart Savings Hub.</li>
+        </ol>
+      </div>
+    </div>
 
-            <div class="app-header">
-              <div class="app-title">Smart Savings Hub</div>
-              <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span>Search retail & travel deals</span>
-              </div>
-            </div>
+    <!-- RIGHT: IPHONE X MOCKUP -->
+    <div class="phone-wrapper">
+      <div class="phone-inner" id="phoneInner">
+        <div class="notch"></div>
 
-            <!-- Top Tabs: Retail / Travel -->
-            <div class="tabs-top">
-              <button class="tab-top-btn active" data-tab="retail">Retail</button>
-              <button class="tab-top-btn" data-tab="travel">Travel</button>
-            </div>
-
-            <!-- Scrollable Content Area -->
-            <div class="content-scroll" id="phone-content">
-              <!-- default content injected by JS -->
-            </div>
-
-            <!-- Divider separating content from bottom nav -->
-            <div class="bottom-divider"></div>
-
-            <!-- Bottom Navigation -->
-            <div class="bottom-nav">
-              <button class="bottom-btn active" data-view="deals">
-                <i class="fa-solid fa-tags"></i>
-                <span>Deals</span>
-              </button>
-              <button class="bottom-btn" data-view="saved">
-                <i class="fa-solid fa-bookmark"></i>
-                <span>Saved</span>
-              </button>
-              <button class="bottom-btn" data-view="profile">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-              </button>
-            </div>
+        <div class="status-bar">
+          <span>9:41</span>
+          <div class="status-right">
+            <i class="fa-solid fa-signal"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-battery-full"></i>
           </div>
         </div>
+
+        <div class="app-header">
+          <div>
+            <div class="app-title">Smart Savings Hub</div>
+            <div class="app-badge">
+              <i class="fa-solid fa-shield-heart"></i> Live Verified Deals
+            </div>
+          </div>
+          <i class="fa-solid fa-bell"></i>
+        </div>
+
+        <div class="search-wrap">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search brands, flights, hotels..." />
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="retail">Retail</button>
+          <button class="tab-btn" data-tab="travel">Travel</button>
+          <button class="tab-btn" data-tab="ent">Entertainment</button>
+        </div>
+
+        <div class="content-scroll" id="dealList">
+          <!-- Dynamic cards inserted by JS -->
+        </div>
+
+        <!-- Divider separating content from bottom nav -->
+        <div class="divider"></div>
+
+        <div class="bottom-nav">
+          <div class="nav-item active" data-screen="deals">
+            <i class="fa-solid fa-tags"></i>
+            <span>Deals</span>
+          </div>
+          <div class="nav-item" data-screen="favorites">
+            <i class="fa-solid fa-heart"></i>
+            <span>Favs</span>
+          </div>
+          <div class="nav-item" data-screen="wallet">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Wallet</span>
+          </div>
+          <div class="nav-item" data-screen="profile">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+          </div>
+        </div>
+
+        <div class="home-indicator"></div>
       </div>
-    </section>
+    </div>
+  </section>
+</main>
 
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works">
-      <h2>How Smart Savings Hub Works</h2>
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Deal details</div>
+      <div class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></div>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Filled by JS -->
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline" id="btnFav">
+        <i class="fa-regular fa-heart"></i> Save to favorites
+      </button>
+      <button class="btn-fill" id="btnActivate">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Activate offer
+      </button>
+    </div>
+  </div>
+</div>
 
-      <div class="step-card">
-        <div class="step-label">Step 1</div>
-        <strong>Connect your interests</strong>
-        <p>
-          Select your favorite brands and travel routes. Our engine tailors the
-          feed so you only see relevant offers.
-        </p>
-      </div>
+<footer>
+  <i class="fa-brands fa-wordpress"></i>
+  <span>Proudly powered by WordPress &bull; Smart Savings Hub prototype</span>
+</footer>
 
-      <div class="step-card">
-        <div class="step-label">Step 2</div>
-        <strong>Browse verified deals</strong>
-        <p>
-          We aggregate live promotions from affiliate and travel APIs, removing
-          expired or misleading offers in real time.
-        </p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-label">Step 3</div>
-        <strong>Book & save instantly</strong>
-        <p>
-          Tap any card to simulate a booking or redemption. Track all your
-          estimated savings in your profile.
-        </p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-label">Step 4</div>
-        <strong>Earn loyalty rewards</strong>
-        <p>
-          As you test deals, we simulate cashback points you could earn across
-          retail and travel partners in production.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <!-- WORDPRESS FOOTER -->
-  <footer>
-    <i class="fa-brands fa-wordpress-simple"></i>
-    <span>Proudly powered by <strong>WordPress</strong></span>
-  </footer>
-
-  <!-- INTERACTIVE SCRIPTS -->
-  <script>
-    const phoneContent = document.getElementById("phone-content");
-    const topTabButtons = document.querySelectorAll(".tab-top-btn");
-    const bottomButtons = document.querySelectorAll(".bottom-btn");
-
-    // Initial state
-    let currentTopTab = "retail";
-    let currentView = "deals";
-
-    function renderContent() {
-      phoneContent.innerHTML = "";
-
-      if (currentView === "deals") {
-        if (currentTopTab === "retail") {
-          phoneContent.innerHTML = `
-            <div class="section-label">Top Retail Deals</div>
-            <div class="deal-card deal-retail-1" data-action="Target 20% OFF">
-              <div>
-                <div class="brand">Target</div>
-                <div class="desc">20% OFF selected essentials today.</div>
-              </div>
-              <div class="cta">Activate</div>
-            </div>
-            <div class="deal-card deal-retail-2" data-action="Nike Extra 15% OFF">
-              <div>
-                <div class="brand">Nike</div>
-                <div class="desc">Extra 15% OFF members-only online.</div>
-              </div>
-              <div class="cta">Unlock</div>
-            </div>
-            <div class="deal-card deal-retail-3" data-action="Best Buy up to 50% OFF">
-              <div>
-                <div class="brand">Best Buy</div>
-                <div class="desc">Up to 50% OFF electronics flash sale.</div>
-              </div>
-              <div class="cta">View</div>
-            </div>
-            <div class="deal-card deal-betting" data-action="Sportsbook Welcome Bonus">
-              <div>
-                <div class="brand">Verified Sportsbook</div>
-                <div class="desc">Get a geo-eligible matched bonus offer.</div>
-              </div>
-              <div class="cta">Check</div>
-            </div>
-            <div class="section-label">Smart Travel Picks</div>
-            <div class="travel-row">
-              <div class="travel-card" data-action="NYC Weekend 19% OFF">
-                <span>NYC Weekend</span>
-                <span>Bundle & save 19%</span>
-                <span>Hotel + Flight</span>
-              </div>
-              <div class="travel-card" data-action="Miami Escape 25% OFF">
-                <span>Miami Escape</span>
-                <span>Up to 25% OFF</span>
-                <span>Beachfront deals</span>
-              </div>
-              <div class="travel-card" data-action="Paris Flight Alert">
-                <span>Paris Alert</span>
-                <span>Track fare drop</span>
-                <span>AI Watch</span>
-              </div>
-            </div>
-          `;
-        } else if (currentTopTab === "travel") {
-          phoneContent.innerHTML = `
-            <div class="section-label">Featured Travel Deals</div>
-            <div class="travel-row">
-              <div class="travel-card" data-action="LA ↔ NYC from $189">
-                <span>LA ↔ NYC</span>
-                <span>Fares from $189</span>
-                <span>3 providers</span>
-              </div>
-              <div class="travel-card" data-action="London Hotels 30% OFF">
-                <span>London Stays</span>
-                <span>Up to 30% OFF</span>
-                <span>Verified partners</span>
-              </div>
-            </div>
-            <div class="travel-row">
-              <div class="travel-card" data-action="Last-minute Vegas">
-                <span>Vegas Tonight</span>
-                <span>Last-minute bundle</span>
-                <span>Rewards eligible</span>
-              </div>
-              <div class="travel-card" data-action="Student EuroRail deal">
-                <span>EuroRail</span>
-                <span>Student specials</span>
-                <span>Save more</span>
-              </div>
-            </div>
-            <div class="section-label">Smart Suggestions</div>
-            <div class="deal-card deal-retail-3" data-action="Luggage & Gear 15% OFF">
-              <div>
-                <div class="brand">Travel Gear</div>
-                <div class="desc">15% OFF luggage with any flight booking.</div>
-              </div>
-              <div class="cta">Bundle</div>
-            </div>
-          `;
-        }
-      } else if (currentView === "saved") {
-        phoneContent.innerHTML = `
-          <div class="section-label">Saved Deals</div>
-          <p>You haven't saved any offers yet.</p>
-          <p style="margin-top:4px;">Tap any deal in the <strong>Deals</strong> view to add it here.</p>
-        `;
-      } else if (currentView === "profile") {
-        phoneContent.innerHTML = `
-          <div class="section-label">Your Profile</div>
-          <p><strong>User:</strong> Demo Shopper</p>
-          <p><strong>Tracked Savings:</strong> $184.20</p>
-          <p><strong>Preferred Categories:</strong> Retail, Flights, Hotels</p>
-          <p style="margin-top:4px;">Toggle between tabs and deals to simulate how your
-          savings profile would update in the live app.</p>
-        `;
+<script>
+  // --- DATA MODEL ----------------------------------------------------------
+  const dealsData = {
+    retail: [
+      {
+        id: 'target-25',
+        brand: 'Target',
+        title: 'Extra 25% Off Weekly Essentials',
+        desc: 'Stackable with in-store offers. Auto-applied at checkout.',
+        tags: ['Auto apply', 'Exp. 24h'],
+        pct: '-25%',
+      },
+      {
+        id: 'nike-20',
+        brand: 'Nike',
+        title: '20% Off Select Styles',
+        desc: 'Members-only drop. Limited sizes & colors.',
+        tags: ['Sneakers', 'Members'],
+        pct: '-20%',
+      },
+      {
+        id: 'bestbuy-40',
+        brand: 'Best Buy',
+        title: 'Up to 40% Off Tech Deals',
+        desc: 'Smart TVs, laptops & more with verified coupons.',
+        tags: ['Electronics'],
+        pct: 'Up to 40%',
       }
+    ],
+    travel: [
+      {
+        id: 'expedia-hotel',
+        brand: 'Expedia',
+        title: 'Up to 30% Off Hotels',
+        desc: 'Dynamic hotel pricing with Smart Savings overlay.',
+        tags: ['Hotel', 'Cashback'],
+        pct: '30% Max',
+      },
+      {
+        id: 'skyscanner-flight',
+        brand: 'Skyscanner',
+        title: 'Smart Flight Price Drops',
+        desc: 'Track fares & get alerts when prices fall.',
+        tags: ['Alerts', 'Flights'],
+        pct: 'Save up to 18%',
+      },
+      {
+        id: 'airbnb-city',
+        brand: 'Airbnb',
+        title: 'City Escapes Under $120/Night',
+        desc: 'Curated stays with hidden cleaning-fee filters.',
+        tags: ['Stays'],
+        pct: 'From $120',
+      }
+    ],
+    ent: [
+      {
+        id: 'spotify-3m',
+        brand: 'Spotify',
+        title: '3 Months Premium for New Users',
+        desc: 'Only via Smart Savings Hub entry.',
+        tags: ['Streaming'],
+        pct: 'Free 3m',
+      },
+      {
+        id: 'fubo-sports',
+        brand: 'Sports Streaming',
+        title: 'Sports Pass 25% Off',
+        desc: 'Watch major leagues with exclusive discount.',
+        tags: ['Live Sports'],
+        pct: '-25%',
+      }
+    ]
+  };
 
-      attachCardEvents();
+  let favorites = [];
+  let currentTab = 'retail';
+  let currentScreen = 'deals';
+  let selectedDeal = null;
+
+  const dealListEl = document.getElementById('dealList');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const btnFav = document.getElementById('btnFav');
+  const btnActivate = document.getElementById('btnActivate');
+
+  // --- RENDER FUNCTIONS ----------------------------------------------------
+  function renderDeals() {
+    dealListEl.innerHTML = '';
+    if (currentScreen === 'favorites') {
+      renderFavoritesScreen();
+      return;
+    }
+    if (currentScreen === 'wallet') {
+      renderWalletScreen();
+      return;
+    }
+    if (currentScreen === 'profile') {
+      renderProfileScreen();
+      return;
     }
 
-    function attachCardEvents() {
-      document.querySelectorAll(".deal-card, .travel-card").forEach((el) => {
-        el.addEventListener("click", () => {
-          const label = el.getAttribute("data-action") || "Selected deal";
-          alert("Test action: " + label + " (Prototype only)");
-        });
+    const list = dealsData[currentTab] || [];
+    const sectionTitle = currentTab === 'retail' ? 'Top retail picks'
+                       : currentTab === 'travel' ? 'Hot travel deals'
+                       : 'Entertainment & subs';
+
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = sectionTitle;
+    dealListEl.appendChild(label);
+
+    list.forEach(deal => {
+      const card = document.createElement('div');
+      card.className = 'deal-card';
+      card.dataset.dealId = deal.id;
+
+      const logo = document.createElement('div');
+      logo.className = 'deal-logo';
+      logo.textContent = deal.brand[0];
+
+      const main = document.createElement('div');
+      main.className = 'deal-main';
+
+      const title = document.createElement('div');
+      title.className = 'deal-title';
+      title.textContent = `${deal.brand} — ${deal.title}`;
+
+      const sub = document.createElement('div');
+      sub.className = 'deal-sub';
+      sub.textContent = deal.desc;
+
+      const tagsWrap = document.createElement('div');
+      tagsWrap.className = 'deal-tags';
+      deal.tags.forEach(t => {
+        const tagSpan = document.createElement('span');
+        tagSpan.textContent = t;
+        tagsWrap.appendChild(tagSpan);
       });
+
+      const cta = document.createElement('div');
+      cta.className = 'deal-cta';
+      cta.innerHTML = 'View details <i class="fa-solid fa-arrow-right"></i>';
+
+      main.appendChild(title);
+      main.appendChild(sub);
+      main.appendChild(tagsWrap);
+      main.appendChild(cta);
+
+      const pct = document.createElement('div');
+      pct.className = 'badge-pct';
+      pct.textContent = deal.pct;
+
+      card.appendChild(logo);
+      card.appendChild(main);
+      card.appendChild(pct);
+
+      card.addEventListener('click', () => openDealModal(deal));
+
+      dealListEl.appendChild(card);
+    });
+  }
+
+  function renderFavoritesScreen() {
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = 'Your saved offers';
+    dealListEl.appendChild(label);
+
+    if (!favorites.length) {
+      const empty = document.createElement('div');
+      empty.className = 'deal-sub';
+      empty.style.padding = '6px 4px';
+      empty.textContent = 'Tap the heart in any deal to save it here.';
+      dealListEl.appendChild(empty);
+      return;
     }
 
-    // Top tab switching
-    topTabButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        topTabButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        currentTopTab = btn.dataset.tab;
-        if (currentView !== "deals") {
-          currentView = "deals";
-          bottomButtons.forEach((b) => b.classList.remove("active"));
-          document
-            .querySelector('.bottom-btn[data-view="deals"]')
-            .classList.add("active");
-        }
-        renderContent();
-      });
+    favorites.forEach(deal => {
+      const card = document.createElement('div');
+      card.className = 'deal-card';
+      card.dataset.dealId = deal.id;
+
+      const logo = document.createElement('div');
+      logo.className = 'deal-logo';
+      logo.textContent = deal.brand[0];
+
+      const main = document.createElement('div');
+      main.className = 'deal-main';
+
+      const title = document.createElement('div');
+      title.className = 'deal-title';
+      title.textContent = `${deal.brand} — ${deal.title}`;
+
+      const sub = document.createElement('div');
+      sub.className = 'deal-sub';
+      sub.textContent = deal.desc;
+
+      const cta = document.createElement('div');
+      cta.className = 'deal-cta';
+      cta.innerHTML = 'View details <i class="fa-solid fa-arrow-right"></i>';
+
+      main.appendChild(title);
+      main.appendChild(sub);
+      main.appendChild(cta);
+
+      const pct = document.createElement('div');
+      pct.className = 'badge-pct';
+      pct.textContent = deal.pct;
+
+      card.appendChild(logo);
+      card.appendChild(main);
+      card.appendChild(pct);
+
+      card.addEventListener('click', () => openDealModal(deal));
+      dealListEl.appendChild(card);
+    });
+  }
+
+  function renderWalletScreen() {
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = 'Rewards wallet (demo)';
+    dealListEl.appendChild(label);
+
+    const card = document.createElement('div');
+    card.className = 'deal-card';
+    card.style.cursor = 'default';
+
+    const main = document.createElement('div');
+    main.className = 'deal-main';
+
+    const title = document.createElement('div');
+    title.className = 'deal-title';
+    title.textContent = 'Estimated Cashback Balance';
+
+    const sub = document.createElement('div');
+    sub.className = 'deal-sub';
+    sub.textContent = '$42.80 from retail + $18.40 from travel bookings';
+
+    const tags = document.createElement('div');
+    tags.className = 'deal-tags';
+    ['Withdraw soon', 'Auto-track savings'].forEach(t => {
+      const s = document.createElement('span');
+      s.textContent = t;
+      tags.appendChild(s);
     });
 
-    // Bottom nav switching
-    bottomButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        bottomButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        currentView = btn.dataset.view;
-        renderContent();
-      });
+    main.appendChild(title);
+    main.appendChild(sub);
+    main.appendChild(tags);
+    card.appendChild(main);
+    dealListEl.appendChild(card);
+  }
+
+  function renderProfileScreen() {
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = 'Profile snapshot (demo)';
+    dealListEl.appendChild(label);
+
+    const card = document.createElement('div');
+    card.className = 'deal-card';
+    card.style.cursor = 'default';
+
+    const main = document.createElement('div');
+    main.className = 'deal-main';
+
+    const title = document.createElement('div');
+    title.className = 'deal-title';
+    title.textContent = 'Alex • Smart Saver';
+
+    const sub = document.createElement('div');
+    sub.className = 'deal-sub';
+    sub.textContent = 'Saved $268.40 in the last 60 days using Smart Savings Hub.';
+
+    const tags = document.createElement('div');
+    tags.className = 'deal-tags';
+    ['Retail power user', 'Travel seeker', 'Early access tier'].forEach(t => {
+      const s = document.createElement('span');
+      s.textContent = t;
+      tags.appendChild(s);
     });
 
-    // CTA buttons
-    document.getElementById("download-btn").addEventListener("click", () => {
-      alert(
-        "Prototype only: In production this would open the App Store / Play Store page for Smart Savings Hub."
-      );
+    main.appendChild(title);
+    main.appendChild(sub);
+    main.appendChild(tags);
+    card.appendChild(main);
+    dealListEl.appendChild(card);
+  }
+
+  // --- MODAL ---------------------------------------------------------------
+  function openDealModal(deal) {
+    selectedDeal = deal;
+    modalTitle.textContent = `${deal.brand} — ${deal.title}`;
+    modalBody.textContent =
+      `${deal.desc} Activate via affiliate link in a real deployment. This prototype simulates the flow so you can test UI & behavior directly from the landing page.`;
+    btnFav.innerHTML = `<i class="fa-regular fa-heart"></i> Save to favorites`;
+    modalBackdrop.style.display = 'flex';
+  }
+
+  function closeModal() {
+    modalBackdrop.style.display = 'none';
+  }
+
+  document.getElementById('modalClose').onclick = closeModal;
+  modalBackdrop.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) closeModal();
+  });
+
+  btnFav.addEventListener('click', () => {
+    if (!selectedDeal) return;
+    const exists = favorites.find(d => d.id === selectedDeal.id);
+    if (!exists) favorites.push(selectedDeal);
+    btnFav.innerHTML = `<i class="fa-solid fa-check"></i> Saved!`;
+  });
+
+  btnActivate.addEventListener('click', () => {
+    if (!selectedDeal) return;
+    alert(`Prototype: this would open the live ${selectedDeal.brand} offer with tracking.`);
+  });
+
+  // --- TABS ---------------------------------------------------------------
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = btn.dataset.tab;
+      currentScreen = 'deals';
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector('.nav-item[data-screen="deals"]').classList.add('active');
+      renderDeals();
     });
+  });
 
-    document.getElementById("try-mockup-btn").addEventListener("click", () => {
-      alert(
-        "Prototype hint: Interact with the iPhone mockup on the right. Switch tabs & nav to test flows."
-      );
+  // --- BOTTOM NAV ---------------------------------------------------------
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+      currentScreen = item.dataset.screen;
+      renderDeals();
     });
+  });
 
-    // "How it works" nav active behavior
-    document
-      .getElementById("how-it-works-link")
-      .addEventListener("click", function () {
-        this.classList.add("active");
-        setTimeout(() => this.classList.remove("active"), 1000);
-      });
+  // --- SEARCH (simple filter in current view) ------------------------------
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) {
+      renderDeals();
+      return;
+    }
 
-    // Initial render
-    renderContent();
-  </script>
+    // filter across current tab's deals only
+    const source = currentScreen === 'deals' ? dealsData[currentTab] || [] : [];
+    dealListEl.innerHTML = '';
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = `Results for "${q}"`;
+    dealListEl.appendChild(label);
+
+    const matches = source.filter(d =>
+      d.brand.toLowerCase().includes(q) ||
+      d.title.toLowerCase().includes(q) ||
+      d.desc.toLowerCase().includes(q)
+    );
+
+    if (!matches.length) {
+      const empty = document.createElement('div');
+      empty.className = 'deal-sub';
+      empty.style.padding = '6px 4px';
+      empty.textContent = 'No matching deals in this demo dataset.';
+      dealListEl.appendChild(empty);
+      return;
+    }
+
+    matches.forEach(deal => {
+      const card = document.createElement('div');
+      card.className = 'deal-card';
+      card.dataset.dealId = deal.id;
+
+      const logo = document.createElement('div');
+      logo.className = 'deal-logo';
+      logo.textContent = deal.brand[0];
+
+      const main = document.createElement('div');
+      main.className = 'deal-main';
+
+      const title = document.createElement('div');
+      title.className = 'deal-title';
+      title.textContent = `${deal.brand} — ${deal.title}`;
+
+      const sub = document.createElement('div');
+      sub.className = 'deal-sub';
+      sub.textContent = deal.desc;
+
+      const cta = document.createElement('div');
+      cta.className = 'deal-cta';
+      cta.innerHTML = 'View details <i class="fa-solid fa-arrow-right"></i>';
+
+      main.appendChild(title);
+      main.appendChild(sub);
+      main.appendChild(cta);
+
+      const pct = document.createElement('div');
+      pct.className = 'badge-pct';
+      pct.textContent = deal.pct;
+
+      card.appendChild(logo);
+      card.appendChild(main);
+      card.appendChild(pct);
+
+      card.addEventListener('click', () => openDealModal(deal));
+      dealListEl.appendChild(card);
+    });
+  });
+
+  // --- CTA BUTTONS --------------------------------------------------------
+  document.getElementById('ctaGetStarted').addEventListener('click', () => {
+    alert('In production this would open the App Store / Play Store. Here it confirms the prototype is interactive.');
+  });
+
+  document.getElementById('ctaSimulate').addEventListener('click', () => {
+    document.querySelector('.nav-item[data-screen="deals"]').click();
+    document.querySelector('.tab-btn[data-tab="travel"]').click();
+    setTimeout(() => {
+      const firstCard = document.querySelector('.deal-card');
+      if (firstCard) firstCard.click();
+    }, 280);
+  });
+
+  document.getElementById('howItWorksLink').addEventListener('click', () => {
+    document.getElementById('howItWorksLink').classList.add('active');
+    setTimeout(() => document.getElementById('howItWorksLink').classList.remove('active'), 1000);
+  });
+
+  // Initial render
+  renderDeals();
+</script>
+
 </body>
 </html>
