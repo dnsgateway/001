@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Smart Savings Hub - Retail & Travel Savings</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Font & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
   <style>
     :root {
-      --bg: #f5f7fb;
-      --text: #111827;
+      --bg: #ffffff;
+      --primary: #16a34a;
+      --primary-soft: #dcfce7;
+      --accent: #2563eb;
+      --text-main: #111827;
       --muted: #6b7280;
-      --primary: #2563eb;
-      --primary-soft: rgba(37,99,235,0.09);
-      --border: #e5e7eb;
-      --card: #ffffff;
-      --accent: #111827;
-      --radius-xl: 32px;
+      --border-subtle: #e5e7eb;
+      --phone-bg: #f9fafb;
+      --shadow-soft: 0 18px 40px rgba(15,23,42,0.15);
+      --radius-xl: 36px;
       --radius-md: 16px;
-      --transition-fast: 0.25s ease;
-      --shadow-soft: 0 14px 40px rgba(15,23,42,0.14);
-      --shadow-subtle: 0 4px 16px rgba(15,23,42,0.08);
-      --phone-width: 320px;
-      --phone-height: 640px;
+      --radius-sm: 10px;
+      --transition-fast: 0.22s ease;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, sans-serif;
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      color: var(--text-main);
     }
 
     a {
@@ -47,42 +42,42 @@
       color: inherit;
     }
 
-    /* HEADER */
-    header {
+    /* Header */
+
+    .site-header {
       width: 100%;
-      padding: 24px 5vw 8px;
+      padding: 18px 5vw 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(245,247,251,0.97), rgba(245,247,251,0.9));
+      z-index: 40;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(229,231,235,0.6);
     }
 
     .brand {
       font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: 0.02em;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
     }
 
-    nav a {
+    .nav-links a {
+      margin-left: 24px;
       font-size: 0.95rem;
       color: var(--muted);
-      margin-left: 24px;
       position: relative;
       padding-bottom: 4px;
-      cursor: pointer;
     }
 
-    nav a:hover,
-    nav a:focus {
-      color: var(--primary);
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--text-main);
     }
 
-    nav a.active::after,
-    nav a:hover::after {
+    .nav-links a.active::after {
       content: "";
       position: absolute;
       left: 0;
@@ -93,1150 +88,808 @@
       border-radius: 999px;
     }
 
-    /* MAIN LAYOUT */
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 5vw 40px;
-    }
+    /* Layout */
 
-    .flex-layout {
+    .page-wrap {
+      min-height: calc(100vh - 60px);
       display: flex;
-      gap: 56px;
-      width: 100%;
-      max-width: 1200px;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
     }
 
-    .hero-copy {
-      flex: 1;
-      max-width: 520px;
+    .hero {
+      padding: 40px 5vw 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
     }
 
-    .eyebrow {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+    .hero-text {
+      flex: 1 1 360px;
+      max-width: 540px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px 4px 6px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      font-size: 0.72rem;
+      font-weight: 600;
       color: var(--primary);
-      font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 14px;
+      gap: 4px;
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 3vw + 1rem, 3rem);
+      font-size: clamp(2.1rem, 3.1vw + 1rem, 3.1rem);
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 14px;
+      line-height: 1.14;
+      margin: 0 0 14px;
     }
 
     .hero-subtitle {
       font-size: 0.98rem;
       color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
-    .hero-highlight {
+    .hero-actions {
       display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
-      gap: 10px 16px;
-      margin-bottom: 20px;
-      font-size: 0.85rem;
-      color: var(--muted);
     }
 
-    .hero-highlight span {
-      padding: 5px 10px;
+    .btn {
+      padding: 11px 22px;
       border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
+      border: none;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(22,163,74,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(22,163,74,0.35);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(148,163,253,0.4);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(239,246,255,0.7);
+    }
+
+    .hero-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .cta-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 10px;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      padding: 12px 22px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition-fast);
-      box-shadow: var(--shadow-subtle);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .btn-ghost {
-      background: transparent;
+    .hero-meta i {
       color: var(--primary);
-      border-radius: 999px;
-      padding: 10px 16px;
-      border: 1px solid rgba(37,99,235,0.18);
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: inline-flex;
+    }
+
+    /* iPhone X Mockup */
+
+    .hero-phone-wrap {
+      flex: 1 1 340px;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
-      transition: var(--transition-fast);
     }
 
-    .btn-ghost:hover {
-      background: var(--primary-soft);
-    }
-
-    .hero-note {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* IPHONE X MOCKUP */
-    .phone-wrapper {
-      flex-shrink: 0;
-      width: var(--phone-width);
-      height: var(--phone-height);
+    .phone-shell {
+      width: 320px;
+      height: 640px;
+      background: #000;
       border-radius: var(--radius-xl);
-      padding: 10px;
-      background: linear-gradient(145deg, #111827, #111827);
+      padding: 14px;
       box-shadow: var(--shadow-soft);
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .phone-inner {
       width: 100%;
       height: 100%;
-      background: #ffffff;
       border-radius: 26px;
-      position: relative;
+      background: var(--phone-bg);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     /* Notch */
-    .notch {
+    .phone-notch {
       position: absolute;
-      top: 8px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 42%;
+      width: 120px;
       height: 18px;
       background: #000;
-      border-radius: 0 0 14px 14px;
+      border-radius: 12px;
       z-index: 5;
     }
 
-    /* Status bar */
     .status-bar {
+      padding: 8px 12px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      padding: 8px 14px 4px;
-      font-size: 0.6rem;
-      color: #6b7280;
-      margin-top: 8px;
+      font-size: 0.62rem;
+      color: #111827;
+      margin-top: 6px;
     }
 
-    .status-right {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    /* App header */
-    .app-header {
-      padding: 4px 14px 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .app-title {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .app-badge {
-      font-size: 0.58rem;
-      padding: 3px 6px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
+    .status-bar span {
       display: inline-flex;
-      gap: 4px;
       align-items: center;
+      gap: 3px;
     }
 
-    .app-header i {
-      font-size: 0.7rem;
-      color: var(--muted);
-      cursor: pointer;
+    .status-bar i {
+      font-size: 0.6rem;
+      color: #111827;
     }
 
-    /* Search */
-    .search-wrap {
-      padding: 0 14px 6px;
+    .phone-header {
+      padding: 2px 14px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
 
-    .search-box {
-      width: 100%;
-      height: 26px;
+    .phone-app-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .phone-search {
+      margin: 0 14px 8px;
+      padding: 7px 9px;
+      background: #ffffff;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      padding: 0 10px;
-      font-size: 0.7rem;
       display: flex;
       align-items: center;
       gap: 6px;
+      font-size: 0.7rem;
       color: var(--muted);
-      background: #f9fafb;
+      border: 1px solid var(--border-subtle);
     }
 
-    .search-box input {
+    .phone-search input {
       border: none;
       outline: none;
-      width: 100%;
       font-size: 0.7rem;
-      background: transparent;
-      color: var(--text);
-    }
-
-    /* Category Tabs */
-    .tabs {
-      display: flex;
-      padding: 4px 14px 6px;
-      gap: 6px;
-      font-size: 0.68rem;
-    }
-
-    .tab-btn {
       flex: 1;
-      text-align: center;
-      padding: 5px 4px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: var(--transition-fast);
-      color: var(--muted);
       background: transparent;
-      font-weight: 500;
+      color: var(--text-main);
     }
 
-    .tab-btn.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
-    }
-
-    /* Deals list area */
-    .content-scroll {
+    .phone-content {
       flex: 1;
+      padding: 0 14px 6px;
       overflow-y: auto;
-      padding: 4px 10px 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      background: #f9fafb;
+      font-size: 0.7rem;
     }
 
     .section-label {
-      font-size: 0.58rem;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 3px 4px 2px;
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      margin: 6px 0 3px;
+      color: #111827;
+      font-size: 0.72rem;
     }
 
     .deal-card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 7px 8px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 8px;
       display: flex;
-      align-items: flex-start;
-      gap: 7px;
-      box-shadow: var(--shadow-subtle);
-      position: relative;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      border: 1px solid var(--border-subtle);
       cursor: pointer;
-      transition: var(--transition-fast);
-      border: 1px solid transparent;
+      transition: all var(--transition-fast);
     }
 
     .deal-card:hover {
       transform: translateY(-1px);
-      box-shadow: var(--shadow-soft);
-      border-color: var(--primary-soft);
+      box-shadow: 0 8px 18px rgba(15,23,42,0.12);
+      border-color: rgba(37,99,235,0.18);
+    }
+
+    .deal-tag {
+      padding: 4px 6px;
+      border-radius: 8px;
+      font-size: 0.59rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--accent);
+      white-space: nowrap;
     }
 
     .deal-logo {
-      width: 20px;
-      height: 20px;
-      border-radius: 8px;
-      background: var(--primary-soft);
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
-      color: var(--primary);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #111827;
       flex-shrink: 0;
     }
 
-    .deal-main {
-      flex: 1;
-    }
-
-    .deal-title {
-      font-size: 0.72rem;
+    .deal-text-title {
       font-weight: 600;
       margin-bottom: 2px;
+      color: #111827;
     }
 
-    .deal-sub {
-      font-size: 0.6rem;
+    .deal-text-sub {
       color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    .deal-tags {
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-
-    .deal-tags span {
-      font-size: 0.52rem;
-      padding: 2px 5px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary);
-    }
-
-    .deal-cta {
       font-size: 0.6rem;
-      color: var(--primary);
-      font-weight: 600;
+    }
+
+    .pill {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-    }
-
-    .badge-pct {
-      position: absolute;
-      top: 4px;
-      right: 6px;
-      font-size: 0.5rem;
-      padding: 2px 5px;
+      gap: 4px;
+      padding: 3px 6px;
       border-radius: 999px;
-      background: #dcfce7;
-      color: #15803d;
-      font-weight: 600;
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 0.56rem;
+      margin-left: auto;
     }
 
     /* Divider above bottom nav */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: #e5e7eb;
-      flex-shrink: 0;
+    .bottom-divider {
+      margin-top: 4px;
+      border-top: 1px solid var(--border-subtle);
     }
 
-    /* Bottom Nav */
     .bottom-nav {
-      height: 40px;
       display: flex;
       align-items: center;
       justify-content: space-around;
+      padding: 5px 4px 4px;
       background: #ffffff;
-      flex-shrink: 0;
+      font-size: 0.55rem;
     }
 
-    .nav-item {
+    .bottom-nav-btn {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 0.5rem;
-      color: var(--muted);
       gap: 1px;
+      padding: 4px 0;
       cursor: pointer;
-      transition: var(--transition-fast);
-    }
-
-    .nav-item i {
-      font-size: 0.78rem;
-    }
-
-    .nav-item.active {
-      color: var(--primary);
-    }
-
-    .home-indicator {
-      position: absolute;
-      bottom: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-      height: 4px;
+      color: var(--muted);
+      transition: all var(--transition-fast);
       border-radius: 999px;
-      background: #111827;
-      opacity: 0.14;
     }
 
-    /* Modal for "View Details" */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15,23,42,0.35);
+    .bottom-nav-btn i {
+      font-size: 0.75rem;
+    }
+
+    .bottom-nav-btn.active {
+      color: var(--primary);
+      font-weight: 600;
+      background: rgba(22,163,74,0.06);
+    }
+
+    /* Alternate Views (hidden by default) */
+    .phone-view {
       display: none;
-      align-items: flex-end;
-      justify-content: center;
-      z-index: 50;
     }
 
-    .modal {
-      width: 100%;
-      max-width: 380px;
+    .phone-view.active {
+      display: block;
+    }
+
+    .saved-empty,
+    .account-view {
       background: #ffffff;
-      border-radius: 18px 18px 0 0;
-      padding: 14px 16px 16px;
-      box-shadow: 0 -10px 30px rgba(15,23,42,0.18);
-      font-size: 0.78rem;
+      border-radius: var(--radius-md);
+      padding: 10px;
+      border: 1px solid var(--border-subtle);
+      margin-top: 6px;
+      font-size: 0.66rem;
+      color: var(--muted);
     }
 
-    .modal-header {
+    .toggle {
+      width: 30px;
+      height: 16px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      position: relative;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .toggle-circle {
+      width: 14px;
+      height: 14px;
+      background: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      transition: all var(--transition-fast);
+      box-shadow: 0 1px 3px rgba(15,23,42,0.2);
+    }
+
+    .toggle.on {
+      background: var(--primary);
+    }
+
+    .toggle.on .toggle-circle {
+      transform: translateX(13px);
+    }
+
+    /* Footer (WordPress style) */
+
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 10px 5vw 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
-    .modal-title {
-      font-weight: 600;
-    }
-
-    .modal-close {
-      cursor: pointer;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .modal-body {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .modal-actions button {
-      flex: 1;
-      padding: 7px 10px;
-      border-radius: 9px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.7rem;
+    .site-footer span {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 5px;
-      transition: var(--transition-fast);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: var(--primary-soft);
-    }
-
-    .btn-fill {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-    }
-
-    .btn-fill:hover {
-      transform: translateY(-1px);
-    }
-
-    /* How it works section (anchor target) */
-    #how-it-works {
-      margin-top: 32px;
-      padding: 18px 18px 10px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.96);
-      box-shadow: var(--shadow-subtle);
-      border: 1px solid rgba(148,163,253,0.12);
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    #how-it-works h2 {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      color: var(--accent);
-    }
-
-    #how-it-works ol {
-      margin-left: 16px;
-      display: grid;
-      gap: 3px;
-    }
-
-    /* FOOTER (WordPress-style) */
-    footer {
-      width: 100%;
-      padding: 12px 5vw 18px;
-      font-size: 0.78rem;
-      color: #6b7280;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       gap: 6px;
-      border-top: 1px solid #e5e7eb;
-      background: #ffffff;
     }
 
-    footer i {
-      font-size: 0.9rem;
+    .site-footer i.fa-wordpress {
+      font-size: 1rem;
     }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      main {
-        padding-top: 8px;
-      }
-      .flex-layout {
+    @media (max-width: 880px) {
+      .hero {
         flex-direction: column;
         align-items: flex-start;
       }
-      .phone-wrapper {
-        margin: 14px auto 0;
+
+      .hero-phone-wrap {
+        width: 100%;
+        justify-content: flex-start;
       }
-      header {
-        position: static;
-        padding-bottom: 4px;
+
+      .phone-shell {
+        margin-top: 10px;
       }
     }
+
   </style>
 </head>
 <body>
+<div class="page-wrap">
 
-<header>
-  <div class="brand">Smart Savings Hub</div>
-  <nav>
-    <a href="#how-it-works" id="howItWorksLink">How it works</a>
-  </nav>
-</header>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">Smart Savings Hub</div>
+    <nav class="nav-links">
+      <a href="#how-it-works" class="active">How it works</a>
+    </nav>
+  </header>
 
-<main>
-  <section class="flex-layout">
-    <!-- LEFT: TEXT / CTA -->
-    <div class="hero-copy">
-      <div class="eyebrow">Unified Retail & Travel Savings</div>
-      <h1 class="hero-title">Save more on brands, flights & stays in one smart hub.</h1>
+  <!-- Hero -->
+  <main class="hero">
+    <!-- Left: Text / CTA -->
+    <section class="hero-text">
+      <div class="kicker">
+        <i class="fa-solid fa-tags"></i> Unified Retail & Travel Savings
+      </div>
+      <h1 class="hero-title">
+        Save on your favorite brands & trips in one smart hub.
+      </h1>
       <p class="hero-subtitle">
-        Discover real-time coupons, hotel & flight deals, exclusive promos, and personalized offers
-        from your favorite brands—without hunting across ten different apps.
+        Discover verified promo codes, flash sales, and member-only hotel & flight deals.
+        Track your savings, earn rewards, and let our AI surface the best offers for you.
       </p>
 
-      <div class="hero-highlight">
-        <span><i class="fa-solid fa-tag"></i> Auto-applied coupons</span>
-        <span><i class="fa-solid fa-plane-departure"></i> Live travel discounts</span>
-        <span><i class="fa-solid fa-gift"></i> Cashback & rewards wallet</span>
-        <span><i class="fa-solid fa-wand-magic-sparkles"></i> AI-picked best deals</span>
-      </div>
-
-      <div class="cta-row">
-        <button class="btn-primary" id="ctaGetStarted">
-          <i class="fa-solid fa-download"></i>
-          Get the prototype
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="btnGetStarted">
+          <i class="fa-solid fa-rocket"></i> Get Started Free
         </button>
-        <button class="btn-ghost" id="ctaSimulate">
-          <i class="fa-solid fa-mobile-screen-button"></i>
-          Demo in phone
+        <button class="btn btn-ghost" id="btnDemo">
+          <i class="fa-solid fa-play"></i> Watch Demo
         </button>
       </div>
-      <p class="hero-note">
-        Click any card, tab, or icon in the mockup → explore the interactive Smart Savings Hub demo.
-      </p>
 
-      <!-- HOW IT WORKS BLOCK -->
-      <div id="how-it-works">
-        <h2>How it works</h2>
-        <ol>
-          <li>Pick your favorite categories: retail, travel, entertainment.</li>
-          <li>We aggregate live deals via trusted affiliate & travel APIs.</li>
-          <li>AI ranks offers by relevancy, savings, and reliability.</li>
-          <li>You activate a deal or booking and earn cashback or rewards.</li>
-          <li>Track your lifetime savings directly inside Smart Savings Hub.</li>
-        </ol>
+      <div class="hero-meta">
+        <span><i class="fa-solid fa-shield-check"></i> Secure partner integrations</span>
+        <span><i class="fa-solid fa-percent"></i> Auto-applied savings & cashback</span>
+        <span><i class="fa-solid fa-earth-americas"></i> Global travel coverage</span>
       </div>
-    </div>
+    </section>
 
-    <!-- RIGHT: IPHONE X MOCKUP -->
-    <div class="phone-wrapper">
-      <div class="phone-inner" id="phoneInner">
-        <div class="notch"></div>
+    <!-- Right: iPhone X Mockup -->
+    <section class="hero-phone-wrap">
+      <div class="phone-shell">
+        <div class="phone-inner">
+          <div class="phone-notch"></div>
 
-        <div class="status-bar">
-          <span>9:41</span>
-          <div class="status-right">
-            <i class="fa-solid fa-signal"></i>
-            <i class="fa-solid fa-wifi"></i>
-            <i class="fa-solid fa-battery-full"></i>
+          <!-- Status Bar -->
+          <div class="status-bar">
+            <span>9:41</span>
+            <span>
+              <i class="fa-solid fa-signal"></i>
+              <i class="fa-solid fa-wifi"></i>
+              <i class="fa-solid fa-battery-three-quarters"></i>
+            </span>
           </div>
-        </div>
 
-        <div class="app-header">
-          <div>
-            <div class="app-title">Smart Savings Hub</div>
-            <div class="app-badge">
-              <i class="fa-solid fa-shield-heart"></i> Live Verified Deals
+          <!-- App Header -->
+          <div class="phone-header">
+            <div>
+              <div class="phone-app-title">Smart Savings Hub</div>
+              <div style="font-size:0.6rem;color:var(--muted);">
+                Deals · Travel · Rewards
+              </div>
+            </div>
+            <button id="btnProfile" style="border:none;background:#ffffff;border-radius:999px;padding:6px 7px;display:flex;align-items:center;gap:4px;font-size:0.6rem;cursor:pointer;box-shadow:0 2px 6px rgba(15,23,42,0.12);">
+              <i class="fa-regular fa-user"></i>
+              <span>AJ</span>
+            </button>
+          </div>
+
+          <!-- Search -->
+          <div class="phone-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="searchInput" placeholder="Search Nike, Marriott, flights to NYC..." />
+          </div>
+
+          <!-- Views -->
+
+          <!-- Deals View -->
+          <div class="phone-content phone-view active" id="view-deals">
+            <div class="section-label">Latest Travel Deals</div>
+
+            <div class="deal-card">
+              <div class="deal-tag">30% OFF</div>
+              <div>
+                <div class="deal-text-title">Expedia Summer Stays</div>
+                <div class="deal-text-sub">Select hotels • Auto-applied at checkout</div>
+              </div>
+              <div class="pill">
+                <i class="fa-solid fa-plane-departure"></i> Travel
+              </div>
+            </div>
+
+            <div class="deal-card">
+              <div class="deal-tag" style="background:#0f766e;">-18%</div>
+              <div>
+                <div class="deal-text-title">NYC Weekend Flight</div>
+                <div class="deal-text-sub">From $189 RT • Limited seats</div>
+              </div>
+              <div class="pill">
+                <i class="fa-solid fa-clock"></i> Last minute
+              </div>
+            </div>
+
+            <div class="section-label">Top Retail Deals</div>
+
+            <div class="deal-card">
+              <div class="deal-logo" style="background:#ff6b35;">N</div>
+              <div>
+                <div class="deal-text-title">Nike — 15% Off</div>
+                <div class="deal-text-sub">Full-priced styles • Members only</div>
+              </div>
+              <div class="pill">
+                <i class="fa-solid fa-tags"></i> Auto-apply
+              </div>
+            </div>
+
+            <div class="deal-card">
+              <div class="deal-logo" style="background:#0061ff;">B</div>
+              <div>
+                <div class="deal-text-title">Booking.com — $50 Off</div>
+                <div class="deal-text-sub">With Genius level 2 via SSH</div>
+              </div>
+              <div class="pill">
+                <i class="fa-solid fa-bed"></i> Hotel
+              </div>
+            </div>
+
+            <div class="section-label">Boosted Offers</div>
+            <div class="deal-card" id="sportsPromoCard">
+              <div class="deal-logo" style="background:#111827;">
+                <i class="fa-solid fa-football"></i>
+              </div>
+              <div>
+                <div class="deal-text-title">FanBube — Bet $10 Get $200</div>
+                <div class="deal-text-sub">Geo-eligible users only · T&Cs apply</div>
+              </div>
+              <div class="pill">
+                <i class="fa-solid fa-location-dot"></i> Check region
+              </div>
             </div>
           </div>
-          <i class="fa-solid fa-bell"></i>
-        </div>
 
-        <div class="search-wrap">
-          <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search brands, flights, hotels..." />
+          <!-- Categories View -->
+          <div class="phone-content phone-view" id="view-categories">
+            <div class="section-label">Browse by category</div>
+
+            <div class="deal-card">
+              <div class="deal-logo" style="background:#22c55e;">
+                <i class="fa-solid fa-store"></i>
+              </div>
+              <div>
+                <div class="deal-text-title">Retail & Fashion</div>
+                <div class="deal-text-sub">Adidas, Nike, Zara, H&M + more</div>
+              </div>
+            </div>
+
+            <div class="deal-card">
+              <div class="deal-logo" style="background:#2563eb;">
+                <i class="fa-solid fa-plane"></i>
+              </div>
+              <div>
+                <div class="deal-text-title">Flights & Hotels</div>
+                <div class="deal-text-sub">Skyscanner, Booking, Expedia</div>
+              </div>
+            </div>
+
+            <div class="deal-card">
+              <div class="deal-logo" style="background:#111827;">
+                <i class="fa-solid fa-dice"></i>
+              </div>
+              <div>
+                <div class="deal-text-title">Sports & Entertainment</div>
+                <div class="deal-text-sub">Boosted signup offers • verified only</div>
+              </div>
+            </div>
+
+            <div class="deal-card">
+              <div class="deal-logo" style="background:#f97316;">
+                <i class="fa-solid fa-gift"></i>
+              </div>
+              <div>
+                <div class="deal-text-title">Cashback & Rewards</div>
+                <div class="deal-text-sub">Bonus tiers for power savers</div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="tabs">
-          <button class="tab-btn active" data-tab="retail">Retail</button>
-          <button class="tab-btn" data-tab="travel">Travel</button>
-          <button class="tab-btn" data-tab="ent">Entertainment</button>
-        </div>
-
-        <div class="content-scroll" id="dealList">
-          <!-- Dynamic cards inserted by JS -->
-        </div>
-
-        <!-- Divider separating content from bottom nav -->
-        <div class="divider"></div>
-
-        <div class="bottom-nav">
-          <div class="nav-item active" data-screen="deals">
-            <i class="fa-solid fa-tags"></i>
-            <span>Deals</span>
+          <!-- Saved View -->
+          <div class="phone-content phone-view" id="view-saved">
+            <div class="section-label">Saved deals</div>
+            <div class="saved-empty" id="savedEmpty">
+              You haven't saved any offers yet.
+              Tap a deal in <b>Deals</b> to pin it here for quick access.
+            </div>
+            <div id="savedList"></div>
           </div>
-          <div class="nav-item" data-screen="favorites">
-            <i class="fa-solid fa-heart"></i>
-            <span>Favs</span>
-          </div>
-          <div class="nav-item" data-screen="wallet">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Wallet</span>
-          </div>
-          <div class="nav-item" data-screen="profile">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-          </div>
-        </div>
 
-        <div class="home-indicator"></div>
+          <!-- Account View -->
+          <div class="phone-content phone-view" id="view-account">
+            <div class="section-label">Profile & Preferences</div>
+            <div class="account-view">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <div style="width:26px;height:26px;border-radius:999px;background:var(--primary-soft);display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--primary);font-weight:600;">AJ</div>
+                <div>
+                  <div style="font-size:0.7rem;font-weight:600;">Alex Jordan</div>
+                  <div style="font-size:0.6rem;color:var(--muted);">Joined • Smart Saver Tier</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:4px 0;">
+                <span>Total saved via Smart Savings Hub</span>
+                <strong style="font-size:0.8rem;color:var(--primary);">$482.70</strong>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:4px 0;">
+                <span>Travel alerts</span>
+                <div class="toggle on" data-toggle="travel">
+                  <div class="toggle-circle"></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:4px 0;">
+                <span>Retail flash deals</span>
+                <div class="toggle on" data-toggle="retail">
+                  <div class="toggle-circle"></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin:4px 0;">
+                <span>Show betting promos (18+)</span>
+                <div class="toggle" data-toggle="betting">
+                  <div class="toggle-circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider and Bottom Navigation -->
+          <div class="bottom-divider"></div>
+
+          <nav class="bottom-nav">
+            <div class="bottom-nav-btn active" data-target="view-deals">
+              <i class="fa-solid fa-house"></i>
+              <span>Deals</span>
+            </div>
+            <div class="bottom-nav-btn" data-target="view-categories">
+              <i class="fa-solid fa-grid-2"></i>
+              <span>Categories</span>
+            </div>
+            <div class="bottom-nav-btn" data-target="view-saved">
+              <i class="fa-regular fa-bookmark"></i>
+              <span>Saved</span>
+            </div>
+            <div class="bottom-nav-btn" data-target="view-account">
+              <i class="fa-regular fa-user"></i>
+              <span>Account</span>
+            </div>
+          </nav>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-<!-- MODAL -->
-<div class="modal-backdrop" id="modalBackdrop">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Deal details</div>
-      <div class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></div>
-    </div>
-    <div class="modal-body" id="modalBody">
-      <!-- Filled by JS -->
-    </div>
-    <div class="modal-actions">
-      <button class="btn-outline" id="btnFav">
-        <i class="fa-regular fa-heart"></i> Save to favorites
-      </button>
-      <button class="btn-fill" id="btnActivate">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> Activate offer
-      </button>
-    </div>
-  </div>
+  <!-- How it works section (anchor target for nav / CTA) -->
+  <section id="how-it-works" style="padding:10px 5vw 26px;">
+    <h2 style="font-size:1.4rem;margin:0 0 8px;">How it works</h2>
+    <ol style="margin:0;padding-left:18px;font-size:0.9rem;color:var(--muted);max-width:680px;line-height:1.6;">
+      <li>Connect your email or create a free account so we can sync your favorite brands & routes.</li>
+      <li>Search or browse deals for retail and travel — we auto-apply the best verified offer at checkout via affiliate partners.</li>
+      <li>Toggle categories and notifications in-app to personalize which promos you see (including optional betting promos by region).</li>
+      <li>Track all savings and cashback inside your Smart Savings Hub wallet and redeem as cash, discounts, or gift cards.</li>
+    </ol>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span>
+      <i class="fa-brands fa-wordpress"></i>
+      Proudly powered by WordPress (concept demo)
+    </span>
+    <span>
+      © <span id="year"></span> Smart Savings Hub · All rights reserved
+    </span>
+  </footer>
 </div>
 
-<footer>
-  <i class="fa-brands fa-wordpress"></i>
-  <span>Proudly powered by WordPress &bull; Smart Savings Hub prototype</span>
-</footer>
-
 <script>
-  // --- DATA MODEL ----------------------------------------------------------
-  const dealsData = {
-    retail: [
-      {
-        id: 'target-25',
-        brand: 'Target',
-        title: 'Extra 25% Off Weekly Essentials',
-        desc: 'Stackable with in-store offers. Auto-applied at checkout.',
-        tags: ['Auto apply', 'Exp. 24h'],
-        pct: '-25%',
-      },
-      {
-        id: 'nike-20',
-        brand: 'Nike',
-        title: '20% Off Select Styles',
-        desc: 'Members-only drop. Limited sizes & colors.',
-        tags: ['Sneakers', 'Members'],
-        pct: '-20%',
-      },
-      {
-        id: 'bestbuy-40',
-        brand: 'Best Buy',
-        title: 'Up to 40% Off Tech Deals',
-        desc: 'Smart TVs, laptops & more with verified coupons.',
-        tags: ['Electronics'],
-        pct: 'Up to 40%',
-      }
-    ],
-    travel: [
-      {
-        id: 'expedia-hotel',
-        brand: 'Expedia',
-        title: 'Up to 30% Off Hotels',
-        desc: 'Dynamic hotel pricing with Smart Savings overlay.',
-        tags: ['Hotel', 'Cashback'],
-        pct: '30% Max',
-      },
-      {
-        id: 'skyscanner-flight',
-        brand: 'Skyscanner',
-        title: 'Smart Flight Price Drops',
-        desc: 'Track fares & get alerts when prices fall.',
-        tags: ['Alerts', 'Flights'],
-        pct: 'Save up to 18%',
-      },
-      {
-        id: 'airbnb-city',
-        brand: 'Airbnb',
-        title: 'City Escapes Under $120/Night',
-        desc: 'Curated stays with hidden cleaning-fee filters.',
-        tags: ['Stays'],
-        pct: 'From $120',
-      }
-    ],
-    ent: [
-      {
-        id: 'spotify-3m',
-        brand: 'Spotify',
-        title: '3 Months Premium for New Users',
-        desc: 'Only via Smart Savings Hub entry.',
-        tags: ['Streaming'],
-        pct: 'Free 3m',
-      },
-      {
-        id: 'fubo-sports',
-        brand: 'Sports Streaming',
-        title: 'Sports Pass 25% Off',
-        desc: 'Watch major leagues with exclusive discount.',
-        tags: ['Live Sports'],
-        pct: '-25%',
-      }
-    ]
-  };
+  // Set year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  let favorites = [];
-  let currentTab = 'retail';
-  let currentScreen = 'deals';
-  let selectedDeal = null;
-
-  const dealListEl = document.getElementById('dealList');
-  const modalBackdrop = document.getElementById('modalBackdrop');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalBody = document.getElementById('modalBody');
-  const btnFav = document.getElementById('btnFav');
-  const btnActivate = document.getElementById('btnActivate');
-
-  // --- RENDER FUNCTIONS ----------------------------------------------------
-  function renderDeals() {
-    dealListEl.innerHTML = '';
-    if (currentScreen === 'favorites') {
-      renderFavoritesScreen();
-      return;
-    }
-    if (currentScreen === 'wallet') {
-      renderWalletScreen();
-      return;
-    }
-    if (currentScreen === 'profile') {
-      renderProfileScreen();
-      return;
-    }
-
-    const list = dealsData[currentTab] || [];
-    const sectionTitle = currentTab === 'retail' ? 'Top retail picks'
-                       : currentTab === 'travel' ? 'Hot travel deals'
-                       : 'Entertainment & subs';
-
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.textContent = sectionTitle;
-    dealListEl.appendChild(label);
-
-    list.forEach(deal => {
-      const card = document.createElement('div');
-      card.className = 'deal-card';
-      card.dataset.dealId = deal.id;
-
-      const logo = document.createElement('div');
-      logo.className = 'deal-logo';
-      logo.textContent = deal.brand[0];
-
-      const main = document.createElement('div');
-      main.className = 'deal-main';
-
-      const title = document.createElement('div');
-      title.className = 'deal-title';
-      title.textContent = `${deal.brand} — ${deal.title}`;
-
-      const sub = document.createElement('div');
-      sub.className = 'deal-sub';
-      sub.textContent = deal.desc;
-
-      const tagsWrap = document.createElement('div');
-      tagsWrap.className = 'deal-tags';
-      deal.tags.forEach(t => {
-        const tagSpan = document.createElement('span');
-        tagSpan.textContent = t;
-        tagsWrap.appendChild(tagSpan);
-      });
-
-      const cta = document.createElement('div');
-      cta.className = 'deal-cta';
-      cta.innerHTML = 'View details <i class="fa-solid fa-arrow-right"></i>';
-
-      main.appendChild(title);
-      main.appendChild(sub);
-      main.appendChild(tagsWrap);
-      main.appendChild(cta);
-
-      const pct = document.createElement('div');
-      pct.className = 'badge-pct';
-      pct.textContent = deal.pct;
-
-      card.appendChild(logo);
-      card.appendChild(main);
-      card.appendChild(pct);
-
-      card.addEventListener('click', () => openDealModal(deal));
-
-      dealListEl.appendChild(card);
-    });
-  }
-
-  function renderFavoritesScreen() {
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.textContent = 'Your saved offers';
-    dealListEl.appendChild(label);
-
-    if (!favorites.length) {
-      const empty = document.createElement('div');
-      empty.className = 'deal-sub';
-      empty.style.padding = '6px 4px';
-      empty.textContent = 'Tap the heart in any deal to save it here.';
-      dealListEl.appendChild(empty);
-      return;
-    }
-
-    favorites.forEach(deal => {
-      const card = document.createElement('div');
-      card.className = 'deal-card';
-      card.dataset.dealId = deal.id;
-
-      const logo = document.createElement('div');
-      logo.className = 'deal-logo';
-      logo.textContent = deal.brand[0];
-
-      const main = document.createElement('div');
-      main.className = 'deal-main';
-
-      const title = document.createElement('div');
-      title.className = 'deal-title';
-      title.textContent = `${deal.brand} — ${deal.title}`;
-
-      const sub = document.createElement('div');
-      sub.className = 'deal-sub';
-      sub.textContent = deal.desc;
-
-      const cta = document.createElement('div');
-      cta.className = 'deal-cta';
-      cta.innerHTML = 'View details <i class="fa-solid fa-arrow-right"></i>';
-
-      main.appendChild(title);
-      main.appendChild(sub);
-      main.appendChild(cta);
-
-      const pct = document.createElement('div');
-      pct.className = 'badge-pct';
-      pct.textContent = deal.pct;
-
-      card.appendChild(logo);
-      card.appendChild(main);
-      card.appendChild(pct);
-
-      card.addEventListener('click', () => openDealModal(deal));
-      dealListEl.appendChild(card);
-    });
-  }
-
-  function renderWalletScreen() {
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.textContent = 'Rewards wallet (demo)';
-    dealListEl.appendChild(label);
-
-    const card = document.createElement('div');
-    card.className = 'deal-card';
-    card.style.cursor = 'default';
-
-    const main = document.createElement('div');
-    main.className = 'deal-main';
-
-    const title = document.createElement('div');
-    title.className = 'deal-title';
-    title.textContent = 'Estimated Cashback Balance';
-
-    const sub = document.createElement('div');
-    sub.className = 'deal-sub';
-    sub.textContent = '$42.80 from retail + $18.40 from travel bookings';
-
-    const tags = document.createElement('div');
-    tags.className = 'deal-tags';
-    ['Withdraw soon', 'Auto-track savings'].forEach(t => {
-      const s = document.createElement('span');
-      s.textContent = t;
-      tags.appendChild(s);
-    });
-
-    main.appendChild(title);
-    main.appendChild(sub);
-    main.appendChild(tags);
-    card.appendChild(main);
-    dealListEl.appendChild(card);
-  }
-
-  function renderProfileScreen() {
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.textContent = 'Profile snapshot (demo)';
-    dealListEl.appendChild(label);
-
-    const card = document.createElement('div');
-    card.className = 'deal-card';
-    card.style.cursor = 'default';
-
-    const main = document.createElement('div');
-    main.className = 'deal-main';
-
-    const title = document.createElement('div');
-    title.className = 'deal-title';
-    title.textContent = 'Alex • Smart Saver';
-
-    const sub = document.createElement('div');
-    sub.className = 'deal-sub';
-    sub.textContent = 'Saved $268.40 in the last 60 days using Smart Savings Hub.';
-
-    const tags = document.createElement('div');
-    tags.className = 'deal-tags';
-    ['Retail power user', 'Travel seeker', 'Early access tier'].forEach(t => {
-      const s = document.createElement('span');
-      s.textContent = t;
-      tags.appendChild(s);
-    });
-
-    main.appendChild(title);
-    main.appendChild(sub);
-    main.appendChild(tags);
-    card.appendChild(main);
-    dealListEl.appendChild(card);
-  }
-
-  // --- MODAL ---------------------------------------------------------------
-  function openDealModal(deal) {
-    selectedDeal = deal;
-    modalTitle.textContent = `${deal.brand} — ${deal.title}`;
-    modalBody.textContent =
-      `${deal.desc} Activate via affiliate link in a real deployment. This prototype simulates the flow so you can test UI & behavior directly from the landing page.`;
-    btnFav.innerHTML = `<i class="fa-regular fa-heart"></i> Save to favorites`;
-    modalBackdrop.style.display = 'flex';
-  }
-
-  function closeModal() {
-    modalBackdrop.style.display = 'none';
-  }
-
-  document.getElementById('modalClose').onclick = closeModal;
-  modalBackdrop.addEventListener('click', (e) => {
-    if (e.target === modalBackdrop) closeModal();
+  // Smooth scroll for "How it works"
+  document.querySelector('.nav-links a').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector('#how-it-works').scrollIntoView({ behavior: 'smooth' });
   });
 
-  btnFav.addEventListener('click', () => {
-    if (!selectedDeal) return;
-    const exists = favorites.find(d => d.id === selectedDeal.id);
-    if (!exists) favorites.push(selectedDeal);
-    btnFav.innerHTML = `<i class="fa-solid fa-check"></i> Saved!`;
+  // CTA scroll & demo
+  document.getElementById('btnGetStarted').addEventListener('click', function () {
+    document.querySelector('#how-it-works').scrollIntoView({ behavior: 'smooth' });
   });
 
-  btnActivate.addEventListener('click', () => {
-    if (!selectedDeal) return;
-    alert(`Prototype: this would open the live ${selectedDeal.brand} offer with tracking.`);
+  document.getElementById('btnDemo').addEventListener('click', function () {
+    alert('Demo: Use the iPhone mockup on the right to test Deals, Categories, Saved, and Account views live on this page.');
   });
 
-  // --- TABS ---------------------------------------------------------------
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  // Bottom navigation inside mockup
+  const navButtons = document.querySelectorAll('.bottom-nav-btn');
+  const views = document.querySelectorAll('.phone-view');
+
+  navButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      const targetId = btn.getAttribute('data-target');
+      // activate nav
+      navButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      currentTab = btn.dataset.tab;
-      currentScreen = 'deals';
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      document.querySelector('.nav-item[data-screen="deals"]').classList.add('active');
-      renderDeals();
+      // switch view
+      views.forEach(v => {
+        v.classList.toggle('active', v.id === targetId);
+      });
     });
   });
 
-  // --- BOTTOM NAV ---------------------------------------------------------
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      item.classList.add('active');
-      currentScreen = item.dataset.screen;
-      renderDeals();
+  // Save deals interaction
+  const savedList = document.getElementById('savedList');
+  const savedEmpty = document.getElementById('savedEmpty');
+  const savableCards = document.querySelectorAll('#view-deals .deal-card');
+
+  savableCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.querySelector('.deal-text-title')?.textContent || 'Saved offer';
+      const sub = card.querySelector('.deal-text-sub')?.textContent || '';
+      if (card.dataset.saved === 'true') {
+        return; // already saved
+      }
+      card.dataset.saved = 'true';
+      if (savedEmpty) savedEmpty.style.display = 'none';
+      const row = document.createElement('div');
+      row.className = 'deal-card';
+      row.innerHTML = `
+        <div class="deal-logo" style="background:#16a34a;"><i class="fa-solid fa-bookmark"></i></div>
+        <div>
+          <div class="deal-text-title">${title}</div>
+          <div class="deal-text-sub">${sub}</div>
+        </div>
+        <div class="pill"><i class="fa-solid fa-check"></i> Saved</div>
+      `;
+      savedList.appendChild(row);
+      alert('Deal saved into your Saved tab inside the mockup.');
     });
   });
 
-  // --- SEARCH (simple filter in current view) ------------------------------
-  document.getElementById('searchInput').addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    if (!q) {
-      renderDeals();
-      return;
-    }
-
-    // filter across current tab's deals only
-    const source = currentScreen === 'deals' ? dealsData[currentTab] || [] : [];
-    dealListEl.innerHTML = '';
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.textContent = `Results for "${q}"`;
-    dealListEl.appendChild(label);
-
-    const matches = source.filter(d =>
-      d.brand.toLowerCase().includes(q) ||
-      d.title.toLowerCase().includes(q) ||
-      d.desc.toLowerCase().includes(q)
-    );
-
-    if (!matches.length) {
-      const empty = document.createElement('div');
-      empty.className = 'deal-sub';
-      empty.style.padding = '6px 4px';
-      empty.textContent = 'No matching deals in this demo dataset.';
-      dealListEl.appendChild(empty);
-      return;
-    }
-
-    matches.forEach(deal => {
-      const card = document.createElement('div');
-      card.className = 'deal-card';
-      card.dataset.dealId = deal.id;
-
-      const logo = document.createElement('div');
-      logo.className = 'deal-logo';
-      logo.textContent = deal.brand[0];
-
-      const main = document.createElement('div');
-      main.className = 'deal-main';
-
-      const title = document.createElement('div');
-      title.className = 'deal-title';
-      title.textContent = `${deal.brand} — ${deal.title}`;
-
-      const sub = document.createElement('div');
-      sub.className = 'deal-sub';
-      sub.textContent = deal.desc;
-
-      const cta = document.createElement('div');
-      cta.className = 'deal-cta';
-      cta.innerHTML = 'View details <i class="fa-solid fa-arrow-right"></i>';
-
-      main.appendChild(title);
-      main.appendChild(sub);
-      main.appendChild(cta);
-
-      const pct = document.createElement('div');
-      pct.className = 'badge-pct';
-      pct.textContent = deal.pct;
-
-      card.appendChild(logo);
-      card.appendChild(main);
-      card.appendChild(pct);
-
-      card.addEventListener('click', () => openDealModal(deal));
-      dealListEl.appendChild(card);
+  // Toggles for preferences
+  const toggles = document.querySelectorAll('.toggle');
+  toggles.forEach(t => {
+    t.addEventListener('click', () => {
+      t.classList.toggle('on');
+      const key = t.dataset.toggle;
+      if (key === 'betting') {
+        const on = t.classList.contains('on');
+        alert(
+          on
+            ? 'Betting promos enabled for eligible regions.'
+            : 'Betting promos hidden. You will only see retail & travel deals.'
+        );
+      }
     });
   });
 
-  // --- CTA BUTTONS --------------------------------------------------------
-  document.getElementById('ctaGetStarted').addEventListener('click', () => {
-    alert('In production this would open the App Store / Play Store. Here it confirms the prototype is interactive.');
+  // Profile button quick jump
+  document.getElementById('btnProfile').addEventListener('click', () => {
+    document.querySelector('.bottom-nav-btn[data-target="view-account"]').click();
   });
 
-  document.getElementById('ctaSimulate').addEventListener('click', () => {
-    document.querySelector('.nav-item[data-screen="deals"]').click();
-    document.querySelector('.tab-btn[data-tab="travel"]').click();
-    setTimeout(() => {
-      const firstCard = document.querySelector('.deal-card');
-      if (firstCard) firstCard.click();
-    }, 280);
+  // Simple search highlight demo
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase();
+    savableCards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.opacity = !q || text.includes(q) ? '1' : '0.18';
+    });
   });
-
-  document.getElementById('howItWorksLink').addEventListener('click', () => {
-    document.getElementById('howItWorksLink').classList.add('active');
-    setTimeout(() => document.getElementById('howItWorksLink').classList.remove('active'), 1000);
-  });
-
-  // Initial render
-  renderDeals();
 </script>
-
 </body>
 </html>
